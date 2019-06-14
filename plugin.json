@@ -1,0 +1,10 @@
+{
+  "id": "nodebb-plugin-auth-adflex",
+  "library": "./library.js",
+  "hooks": [
+    {
+      "hook": "action:auth.overrideLogin",
+      "method": "login"
+    }
+  ]
+}

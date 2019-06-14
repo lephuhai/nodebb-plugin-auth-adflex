@@ -1,0 +1,16 @@
+{
+  "name": "nodebb-plugin-auth-adflex",
+  "version": "0.0.1",
+  "description": "NodeBB plugin for override login",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lephuhai/nodebb-plugin-auth-adflex"
+  },
+  "main": "index.js",
+  "nbbpm": {
+    "compatibility": "^1.0.0"
+  },
+  "keywords": ["nodebb","auth","overridelogin"],
+  "author": "Vietworm <lephuhai0511@gmail.com>",
+  "license": "MIT"
+}
