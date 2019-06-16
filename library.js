@@ -21,17 +21,25 @@ plugin.continueLogin = function(req, username, password, next) {
         return next(new Error('[[error:password-too-long]]'));
     }
 
+    var userData = {
+        "passwordExpiry": 0,
+        "uid": 1,
+        "isAdminOrGlobalMod": true
+    };
+
+    next(null, userData, '[[success:authentication-successful]]');
+
     // Do your stuff here (query API or SQL db, etc...)
     // If the login was successful:
 
     // TODO:
 
-    next(null, {
-        uid: "machine"
-    }, '[[success:authentication-successful]]');
+    // next(null, {
+    //     uid: "machine"
+    // }, '[[success:authentication-successful]]');
 
     // But if the login was unsuccessful, pass an error back, like so:
-    next(new Error('[[error:invalid-username-or-password]]'));
+    // next(new Error('[[error:invalid-username-or-password]]'));
 
     /*
         You'll probably want to add login in this method to determine whether a login
