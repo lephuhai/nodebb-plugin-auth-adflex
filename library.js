@@ -9,8 +9,23 @@ plugin.login = () => {
 };
 
 plugin.continueLogin = function(req, username, password, next) {
+    if (!username) {
+        return next(new Error('[[error:invalid-username]]'))
+    }
+
+    if (!password) {
+        return next(new Error('[[error:invalid-password]]'))
+    }
+
+    if (password.length > 4096) {
+        return next(new Error('[[error:password-too-long]]'));
+    }
+
     // Do your stuff here (query API or SQL db, etc...)
     // If the login was successful:
+
+    // TODO:
+
     next(null, {
         uid: "machine"
     }, '[[success:authentication-successful]]');
