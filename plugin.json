@@ -5,6 +5,11 @@
     {
       "hook": "action:auth.overrideLogin",
       "method": "login"
+    },
+    {
+      "hook": "static:app.load",
+      "method": "load"
     }
-  ]
+  ],
+  "templates": "./templates"
 }

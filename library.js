@@ -3,12 +3,28 @@ const passport = module.parent.require('passport'),
     winston = module.parent.require('winston'),
     plugin = {};
 
-plugin.login = () => {
-    winston.info('[login] Registering new local login strategy');
-    passport.use(new passportLocal({passReqToCallback: true}, plugin.continueLogin));
+plugin.load = function (params, callback) {
+
+    var router = params.router;
+    var middleware = params.middleware;
+
+    function render(req, res, next) {
+
+        res.render('UserProfileDefine');
+    }
+
+    router.get('/adflex', middleware.buildHeader, render);
+    router.get('/api/adflex', render);
+
+    callback();
 };
 
-plugin.continueLogin = function(req, username, password, next) {
+plugin.login = () => {
+    winston.info('[login] Registering new local login strategy');
+    passport.use(new passportLocal({passReqToCallback: true}, plugin.localLogin));
+};
+
+plugin.localLogin = function(req, username, password, next) {
     if (!username) {
         return next(new Error('[[error:invalid-username]]'))
     }
