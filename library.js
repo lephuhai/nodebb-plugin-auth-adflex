@@ -1,6 +1,9 @@
 const passport = module.parent.require('passport'),
     passportLocal = module.parent.require('passport-local').Strategy,
     winston = module.parent.require('winston'),
+    request = module.parent.require('request'),
+    nconf = module.parent.require('nconf'),
+    user = require.main.require('./src/user'),
     plugin = {};
 
 plugin.load = function (params, callback) {
@@ -13,10 +16,15 @@ plugin.load = function (params, callback) {
         res.render('UserProfileDefine');
     }
 
-    router.get('/adflex', middleware.buildHeader, render);
-    router.get('/api/adflex', render);
+    router.get('/verify', middleware.buildHeader, render);
+    router.get('/api/verify', render);
 
     callback();
+};
+
+plugin.redirectToConfirm = function (params, callback) {
+    params.referrer = nconf.get('relative_path') + '/verify';
+    callback(null, params);
 };
 
 plugin.login = () => {
